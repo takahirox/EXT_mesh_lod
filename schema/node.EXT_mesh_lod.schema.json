@@ -1,0 +1,34 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "title": "EXT_mesh_lod glTF extension",
+    "type": "object",
+    "description": "glTF extension for specifying levels of detail (LOD) for mesh.",
+    "allOf": [ { "$ref": "glTFProperty.schema.json" } ],
+    "properties": {
+        "mesh_lod": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "allOf": [ { "$ref": "glTFProperty.schema.json" } ],
+                "properties": {
+                    "mesh": {
+                        "allOf": [ { "$ref": "glTFid.schema.json" } ],
+                        "description": "LOD mesh index"
+                    },
+                    "coverage": {
+                        "type": "number",
+                        "minimum": 0.0,
+                        "maximum": 1.0,
+                        "description": "Screen coverage for switching"
+                    }
+                }
+                "required": [ "mesh", "coverage" ]
+            },
+            "description": "Array containing the objects including the mesh index as lower LOD and screen coverage as a hint to switch.",
+            "minItems": 1
+        },
+        "extensions": { },
+        "extras": { }
+    },
+    "required": [ "mesh_lod" ]
+}
