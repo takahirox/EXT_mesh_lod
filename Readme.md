@@ -20,22 +20,24 @@ LODs for various scenarios like rendering a different LOD based upon the
 distance of the object or progressively loading the glTF asset starting with
 the lowest LOD.
 
-This extension allows an LOD to be defined in a `node`. (A node having the
-extension **MUST** have `mesh`.) The LODs can specify different geometry and
-materials across various levels.
+This extension allows an LOD to be defined in a `node`. If the extension
+is defined in a `node`, `mesh` **MUST** also be defined in the `node`.
+The LODs can specify different meshes across various levels.
 
 The extension is added to the highest LOD level. The extension defines an
 `mesh_lod` property which is an array containing the objects including the
-`mesh` index as the lower LOD level and the screen coverage number as a hint
-to determine the switching threshold for the LOD.
+`mesh` property that points to the index of the `mesehes` node as LOD mesh
+and the optional `skin` and `weights` property for skinning and morph for
+the LOD mesh, and the screen coverage number as a hint to determine the
+switching threshold for the LOD.
 
 Each `mesh` index in the array points to a LOD level that is lower in quality
 than the previous level.
 
-For example, if a `node` has a `mesh` index and the extension, the mesh referred
-by the `mesh` index is the highest LOD level. Every `mesh` index specified in the
-array of the extension points to the index of `mesh` which should be used as
-the lower LOD level.
+For example, if a `node` has a `mesh` and the extension, the `meshes` node
+referred by the `mesh` property in the `node` is the highest LOD level. Every
+`mesh` property specified in the array of the extension points to the index of
+`meshes` node which should be used as the lower LOD level.
 
 An implementation of this extension can parse through the array to create the
 list of LOD levels available for an asset. If an asset containing this extension
@@ -81,23 +83,24 @@ coverage is between the LOD's `coverage` value and the next lower LOD
 
 In the example above the screen coverage values can be used as follows:
 
-* LOD0 Rendered from 1.0 to 0.5
-* LOD1 Rendered from 0.5 to 0.2
-* LOD2 Rendered from 0.2 to 0
+* LOD0(high) Rendered from 1.0 to 0.5
+* LOD1(medium) Rendered from 0.5 to 0.2
+* LOD2(low) Rendered from 0.2 to 0
 
 ## Mesh LOD Array property
 
 | Property | Type | Description | Requires |
 |:------|:------|:------|:------|
-| `mesh_lod` | `lod [1-*]` | Mesh lower LODs definition | :white_check_mark: Yes |
+| `mesh_lod` | `lod [1-*]` | Lower mesh LODs definition | :white_check_mark: Yes |
 
-## Mesh LOD properties
+## Properties of Mesh LOD Array entry
 
 | Property | Type | Description | Requires |
 |:------|:------|:------|:------|
-| `mesh` | `integer` | LOD mesh index | :white_check_mark: Yes |
-| `skin` | `integer` | LOD skin index | No |
-| `coverage` | `number` | Screen coverage for switching. The value must be between `0.0` and `1.0`, and must be between the next higher LOD `coverage` value and the next lower LOD `coverage` value. | :white_check_mark: Yes |
+| `mesh` | `integer` | `mesh` index for this LOD level. Refer to [`node.mesh`](https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#_node_mesh) in the core spec for the details. | :white_check_mark: Yes |
+| `skin` | `integer` | `skin` index for this LOD level `mesh` skinning. Refer to [`node.skin`](https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#_node_skin) in the core spec for the details. | No |
+| `weights` | `number [1-*]` | `weights` for this LOD level `mesh` morph. Refer to [`node.weights`](https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#_node_weights) in the core spec for the details. | No |
+| `coverage` | `number` | Screen coverage for switching for this LOD level. The value must be between `0.0` and `1.0`, and must be between the next higher LOD `coverage` value and the next lower LOD `coverage` value. | :white_check_mark: Yes |
 
 ## Schema
 
