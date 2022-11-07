@@ -15,6 +15,10 @@
                         "allOf": [ { "$ref": "glTFid.schema.json" } ],
                         "description": "LOD mesh index"
                     },
+                    "skin": {
+                        "allOf": [ { "$ref": "glTFid.schema.json" } ],
+                        "description": "LOD skin index"
+                    },
                     "coverage": {
                         "type": "number",
                         "minimum": 0.0,

@@ -96,6 +96,7 @@ In the example above the screen coverage values can be used as follows:
 | Property | Type | Description | Requires |
 |:------|:------|:------|:------|
 | `mesh` | `integer` | LOD mesh index | :white_check_mark: Yes |
+| `skin` | `integer` | LOD skin index | No |
 | `coverage` | `number` | Screen coverage for switching. The value must be between `0.0` and `1.0`, and must be between the next higher LOD `coverage` value and the next lower LOD `coverage` value. | :white_check_mark: Yes |
 
 ## Schema
