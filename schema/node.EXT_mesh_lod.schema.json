@@ -19,6 +19,15 @@
                         "allOf": [ { "$ref": "glTFid.schema.json" } ],
                         "description": "LOD skin index"
                     },
+                    "weights": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        },
+                        "allOf": [ { "$ref": "glTFid.schema.json" } ],
+                        "description": "Array containing weights values for morph",
+                        "minItems": 1
+                    },
                     "coverage": {
                         "type": "number",
                         "minimum": 0.0,
