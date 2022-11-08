@@ -33,7 +33,9 @@
                         "minimum": 0.0,
                         "maximum": 1.0,
                         "description": "Screen coverage for switching"
-                    }
+                    },
+                    "extensions": { },
+                    "extras": { }
                 }
                 "required": [ "mesh", "coverage" ]
             },
