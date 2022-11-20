@@ -1,5 +1,7 @@
 # EXT\_mesh\_lod
 
+**This project is archived. Please visit [`EXT_node_lod`](https://github.com/takahirox/EXT_node_lod) for the new one.**
+
 ## Contributors
 
 * Takahiro Aoyagi, Mozilla, [@takahirox](https://github.com/takahirox)
